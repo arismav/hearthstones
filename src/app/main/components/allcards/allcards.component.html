@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2 col-xs-2 p-l-0 p-r-0 collapse in show" id="sidebar">
+      <div class="list-group panel">
+        <a *ngIf="this.parentvar2" class="list-group-item collapsed">{{this.parentvar}}</a>
+        <a class="list-group-item collapsed fav" routerLink="/favourites">Favourites</a>
+        <a [routerLinkActive]="['active']" *ngFor="let cardtypes of _cardtype" href="#" class="list-group-item collapsed"
+          data-parent="#sidebar" routerLink="/cards/type/{{cardtypes}}" (click)="getCardType(cardtypes)">
+          <span class="hidden-sm-down">{{cardtypes}}</span>
+        </a>
+      </div>
+    </div>
+    <main class="col-md-1 col-xs-1 text-center">
+      <span>
+        <a class="icon" (click)="changeicon()" data-toggle="collapse">
+          <i *ngIf="_iconflag" class="fa fa-navicon fa-lg"></i>
+          <i *ngIf="!_iconflag" class="fas fa-times fa-lg"></i>
+        </a>
+      </span>
+      <hr class="w-100">
+    </main>
+    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-xs-12">
+      <div class="row justify-content-center" style="margin:0px !important;">
+        <app-cardtypes (childoutput2)="parentoutput2($event)" (childoutput)="parentoutput($event)" [searchflag]="this._searchflag"
+          [cardtypes]="this.sets" [pagination]="this.pages" class="w-100">
+        </app-cardtypes>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-ui-loader fgsSize="40"></ngx-ui-loader>

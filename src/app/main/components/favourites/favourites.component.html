@@ -1,0 +1,36 @@
+<div class="row justify-content-center" style="margin:0px !important;">
+  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12 cols" *ngFor="let set of this._favIds | paginate: { itemsPerPage: 12, currentPage: p }">
+
+    <div class="example-1 card1">
+      <div class="wrapper">
+
+        <img *ngIf="set.img" class="image" src="{{set.img}}">
+        <img *ngIf="!set.img" class="image" src="https://www.stockjo.com/wp-content/themes/stock/images/default-image.jpg">
+        <div class="date">
+          <span class="day">{{set.cardSet}}</span>
+          <span class="month"><a routerLink="/detail/{{set.cardId}}">{{set.cardId}}</a></span>
+          <span class="year" (click)="addToFav(set)">Favourite</span>
+        </div>
+        <div class="data">
+          <div class="content">
+            <span class="author">{{set.name}}</span>
+            <p class="title">{{set.text}}</p>
+            <p class="text">The highly anticipated world championship fight will take place at 10am and is the
+              second
+              major boxing blockbuster in the nation after 43 years.</p>
+            <label for="show-menu" class="menu-button"><span></span></label>
+          </div>
+          <input type="checkbox" id="show-menu" />
+          <ul class="menu-content">
+            <li>
+              <a href="#" class="fa fa-bookmark-o"></a>
+            </li>
+            <li><a href="#" class="fa fa-heart-o"><span>47</span></a></li>
+            <li><a href="#" class="fa fa-comment-o"><span>8</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

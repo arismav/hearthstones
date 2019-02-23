@@ -1,0 +1,62 @@
+<div class="row justify-content-center text-center" style="margin:0px !important;">
+  <h5 class="header">Hearthstone Cards</h5>
+  <div *ngIf="this.searchflag" class="form-group">
+    <label for="usr">Filter By Card Id:</label>
+    <input type="text" [(ngModel)]="query" class="form-control" id="usr">
+  </div>
+
+</div>
+<div class="row justify-content-center text-center m-2">
+  <div class="col-12">
+    <button (click)="Outputchild()">Output</button>
+  </div>
+</div>
+
+<div id="cards" style="margin:0px !important;">
+  <ngx-masonry [options]="{ transitionDuration: '1s' }">
+    <!--col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12 -->
+    <ngxMasonryItem class="masonry-item cols-cards" *ngFor="let set of this.cardtypes | startsWith : query | paginate: { itemsPerPage: 12, currentPage: p }">
+
+      <div class="example-1 card1">
+        <div class="wrapper">
+
+          <img *ngIf="set.img" class="image" src="{{set.img}}">
+          <img *ngIf="!set.img" class="image" src="https://www.stockjo.com/wp-content/themes/stock/images/default-image.jpg">
+          <div class="date">
+            <span class="day">{{set.cardSet}}</span>
+            <span class="month"><a routerLink="/detail/{{set.cardId}}">{{set.cardId}}</a></span>
+            <a class="year" (click)="addToFav(set)">
+              Favourites
+              <!--<i class="far fa-heart"></i>
+            <i *ngIf="this._addedToFav" class="fas fa-heart"></i>-->
+            </a>
+          </div>
+          <div class="data">
+            <div class="content">
+              <span class="author">{{set.name}}</span>
+              <p class="title">{{set.text}}</p>
+              <p class="text">The highly anticipated world championship fight will take place at 10am and is the
+                second
+                major boxing blockbuster in the nation after 43 years.</p>
+              <label for="show-menu" class="menu-button"><span></span></label>
+            </div>
+            <input type="checkbox" id="show-menu" />
+            <ul class="menu-content">
+              <li>
+                <a href="#" class="fa fa-bookmark-o"></a>
+              </li>
+              <li><a href="#" class="fa fa-heart-o"><span>47</span></a></li>
+              <li><a href="#" class="fa fa-comment-o"><span>8</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </ngxMasonryItem>
+  </ngx-masonry>
+</div>
+<div *ngIf="this.pagination" class="row justify-content-center text-center mt-5">
+  <div class="col-12">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>

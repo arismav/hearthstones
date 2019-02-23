@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+
+    <div *ngFor="let but of this._mybuttons" class="col-xl-4 col-xl-4 col-md-6 col-sm-12 col-xs-12">
+      <!-- Default inline 1-->
+      <div [routerLinkActive]="['active']">
+        <button (click)="callgroup(but)" [ngClass]="changecolor(but)" type="button" class="btn btn-outline-primary waves-effect w-100">{{but}}</button>
+      </div>
+    </div>
+
+    
+  </div>
+  <div  class="row mt5 justify-content-center text-center">
+      <div *ngIf="this.show" class="form-group">
+          <label for="exampleFormControlSelect1">Select Card</label>
+          <select (change)="carddet()" *ngIf="this.show" class="form-control" id="cardbytype">
+            <option>Select</option>
+            <option class="opt" *ngFor="let cardid of this._cardbytype">{{cardid.cardId}}</option>
+          </select>
+        </div>
+
+  </div>
+</div>
+
+
+<ngx-ui-loader></ngx-ui-loader>
